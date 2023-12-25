@@ -1,43 +1,19 @@
 /* eslint-disable prettier/prettier */
 import React = require('react');
-import { Button, Text, View, StyleSheet } from 'react-native'; // Import StyleSheet
+import { View, Text ,StyleSheet } from 'react-native';
+import { LineChartComponent } from './src/components/Charts/LineChart';
 
 export type Props = {
     name: string;
     baseEnthusiasmLevel?: number;
 };
 
-const App: React.FC<Props> = ({ name, baseEnthusiasmLevel = 0 }) => {
-    const [enthusiasmLevel, setEnthusiasmLevel] =
-        React.useState(baseEnthusiasmLevel);
-
-    const onIncrement = () => setEnthusiasmLevel(enthusiasmLevel + 1);
-    const onDecrement = () =>
-        setEnthusiasmLevel(enthusiasmLevel > 0 ? enthusiasmLevel - 1 : 0);
-
-    const getExclamationMarks = (numChars: number) =>
-        numChars > 0 ? Array(numChars + 1).join('!') : '';
-
+const App: React.FC<Props> = () => {
     return (
         <View style={styles.container}>
-            <Text style={styles.greeting}>
-                Hello {name}
-                {getExclamationMarks(enthusiasmLevel)}
+            <Text>
+                <LineChartComponent/>
             </Text>
-            <View>
-                <Button
-                    title="Increase enthusiasm"
-                    accessibilityLabel="increment"
-                    onPress={onIncrement}
-                    color="blue"
-                />
-                <Button
-                    title="Decrease enthusiasm"
-                    accessibilityLabel="decrement"
-                    onPress={onDecrement}
-                    color="red"
-                />
-            </View>
         </View>
     );
 };
