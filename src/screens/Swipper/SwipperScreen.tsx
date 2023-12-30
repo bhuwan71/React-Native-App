@@ -3,7 +3,12 @@ const React = require('react');
 import { View, Text, StyleSheet, TouchableOpacity, Image } from 'react-native';
 import Swiper from 'react-native-swiper';
 
-const SwiperScreen: React.FC = () => {
+
+interface SwipperScreenProps {
+  navigation: any; // You can use React Navigation types here
+}
+
+const SwiperScreen: React.FC<SwipperScreenProps> = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <Swiper style={styles.wrapper} showsButtons={false} loop={false}>
@@ -28,10 +33,11 @@ const SwiperScreen: React.FC = () => {
         {/* Add more slides as needed */}
       </Swiper>
       <View style={styles.buttonsContainer}>
-        <TouchableOpacity style={styles.button} onPress={() => console.log('Signup pressed')}>
+        <TouchableOpacity onPress={() => navigation.navigate('Register')} style={styles.button}
+        >
           <Text style={styles.buttonText}>Sign Up</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.button} onPress={() => console.log('Login pressed')}>
+        <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Login')}>
           <Text style={styles.buttonText}>Login</Text>
         </TouchableOpacity>
       </View>
